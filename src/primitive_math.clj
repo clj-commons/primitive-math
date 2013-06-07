@@ -35,7 +35,7 @@
              (list 'primitive_math.Primitives/and (list '~name x# y#) (list* '~name y# rest#)))))))
 
 (variadic-proxy +             primitive_math.Primitives/add)
-(variadic-proxy -             primitive_math.Primitives/subtract (fn [x] `(primitive_math.Primitives/subtract 0 ~x)))
+(variadic-proxy -             primitive_math.Primitives/subtract (fn [x] `(list 'primitive_math.Primitives/negate ~x)))
 (variadic-proxy *             primitive_math.Primitives/multiply)
 (variadic-proxy /             primitive_math.Primitives/divide)
 (variadic-proxy div           primitive_math.Primitives/divide)

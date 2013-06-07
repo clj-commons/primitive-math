@@ -177,6 +177,14 @@ public class Primitives {
         return a - b;
     }
 
+    public static long negate(long n) {
+        return -n;
+    }
+
+    public static double negate(double n) {
+        return -n;
+    }
+
     public static long multiply(long a, long b) {
         return a * b;
     }
