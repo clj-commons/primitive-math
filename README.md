@@ -63,7 +63,7 @@ int
 float
 ```
 
-## license
+### license
 
 Copyright © 2013 Zachary Tellman
 
