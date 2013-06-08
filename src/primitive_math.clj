@@ -1,6 +1,6 @@
 (ns primitive-math
   (:refer-clojure
-    :exclude [* + - / < > <= >= == rem bit-or bit-and bit-shift-left bit-shift-right byte short int float inc dec zero?])
+    :exclude [* + - / < > <= >= == rem bit-or bit-and bit-xor bit-not bit-shift-left bit-shift-right byte short int float inc dec zero?])
   (:import
     [primitive_math Primitives]))
 
@@ -41,8 +41,10 @@
 (variadic-proxy div           primitive_math.Primitives/divide)
 (variadic-proxy bit-and       primitive_math.Primitives/bitAnd)
 (variadic-proxy bit-or        primitive_math.Primitives/bitOr)
+(variadic-proxy bit-xor       primitive_math.Primitives/bitXor)
 (variadic-proxy bool-and      primitive_math.Primitives/and)
 (variadic-proxy bool-or       primitive_math.Primitives/or)
+(variadic-proxy bool-xor      primitive_math.Primitives/xor)
 
 (variadic-predicate-proxy >   primitive_math.Primitives/gt)
 (variadic-predicate-proxy <   primitive_math.Primitives/lt)
@@ -66,6 +68,9 @@
 (defmacro bool-not [x]
   `(Primitives/not ~x))
 
+(defmacro bit-not [x]
+  `(Primitives/bitNot ~x))
+
 (defmacro bit-shift-left [n bits]
   `(Primitives/shiftLeft ~n ~bits))
 
@@ -87,7 +92,7 @@
 ;;;
 
 (def ^:private vars-to-exclude
-  '[* + - / < > <= >= == rem bit-or bit-and bit-shift-left bit-shift-right byte short int float inc dec zero?])
+  '[* + - / < > <= >= == rem bit-or bit-and bit-xor bit-not bit-shift-left bit-shift-right byte short int float inc dec zero?])
 
 (defn- using-primitive-operators? []
   (= #'primitive-math/+ (resolve '+)))

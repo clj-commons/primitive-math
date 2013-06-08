@@ -29,7 +29,7 @@ In practice, it's usually preferable to import the namespace with a prefix, and 
 ### usage
 
 ```clj
-[primitive-math "0.1.1"]
+[primitive-math "0.1.2"]
 ```
 
 ### an exhaustive list of operators
@@ -52,8 +52,11 @@ zero?
 bool-and
 bool-or
 bool-not
+bool-xor
 bit-and
 bit-or
+bit-xor
+bit-not
 bit-shift-left	 ;; aliased as '<<'
 bit-shift-right  ;; aliased as '>>'
 bit-unsigned-shift-right  ;; aliased as '>>>'
