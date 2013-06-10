@@ -1,4 +1,4 @@
-Clojure's numeric tower is useful, but it can put a lot of steps between you and simple arithmetic.  Unfortunately, while Clojure will warn you when reflection is required to invoke a function, it will **not** warn you when reflection is required to perform math.  The only reliable way to discover whether you're calling `clojure.lang.Number.add(Object, Object)` or `Number.lang.Number.add(long, long)` is to use a profiler or decompiler.
+Clojure's numeric tower is useful, but it can put a lot of steps between you and simple arithmetic.  Unfortunately, while Clojure will warn you when reflection is required to invoke a function, it will **not** warn you when reflection is required to perform math.  The only reliable way to discover whether you're calling `clojure.lang.Number.add(Object, Object)` or `clojure.lang.Number.add(long, long)` is to use a profiler or decompiler.
 
 Or you can just bypass Clojure's math operators altogether.
 
