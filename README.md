@@ -66,6 +66,8 @@ int
 float
 ```
 
+Full documentation can be found [here](http://ideolalia.com/primitive-math/primitive-math.html).
+
 ### license
 
 Copyright © 2013 Zachary Tellman
