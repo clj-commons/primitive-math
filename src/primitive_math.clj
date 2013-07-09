@@ -9,10 +9,13 @@
 (defmacro ^:private variadic-proxy
   "Creates left-associative variadic forms for any operator."
   ([name fn]
-     `(variadic-proxy ~name ~fn identity))
-  ([name fn single-arg-form]
+     `(variadic-proxy ~name ~fn ~(str "A primitive macro version of `" name "`")))
+  ([name fn doc]
+     `(variadic-proxy ~name ~fn ~doc identity))
+  ([name fn doc single-arg-form]
      (let [x-sym (gensym "x")]
        `(defmacro ~name
+          ~doc
           ([~x-sym]
              ~((eval single-arg-form) x-sym))
           ([x# y#]
@@ -23,10 +26,13 @@
 (defmacro ^:private variadic-predicate-proxy
   "Turns variadic predicates into multiple pair-wise comparisons."
   ([name fn]
-     `(variadic-predicate-proxy ~name ~fn (constantly true)))
-  ([name fn single-arg-form]
+     `(variadic-predicate-proxy ~name ~fn ~(str "A primitive macro version of `" name "`")))
+  ([name fn doc]
+     `(variadic-predicate-proxy ~name ~fn ~doc (constantly true)))
+  ([name fn doc single-arg-form]
      (let [x-sym (gensym "x")]
        `(defmacro ~name
+          ~doc
           ([~x-sym]
              ~((eval single-arg-form) x-sym))
           ([x# y#]
@@ -35,7 +41,7 @@
              (list 'primitive_math.Primitives/and (list '~name x# y#) (list* '~name y# rest#)))))))
 
 (variadic-proxy +             primitive_math.Primitives/add)
-(variadic-proxy -             primitive_math.Primitives/subtract (fn [x] `(list 'primitive_math.Primitives/negate ~x)))
+(variadic-proxy -             primitive_math.Primitives/subtract "A primitive macro version of `-`" (fn [x] `(list 'primitive_math.Primitives/negate ~x)))
 (variadic-proxy *             primitive_math.Primitives/multiply)
 (variadic-proxy /             primitive_math.Primitives/divide)
 (variadic-proxy div           primitive_math.Primitives/divide)
@@ -51,42 +57,66 @@
 (variadic-predicate-proxy <=  primitive_math.Primitives/lte)
 (variadic-predicate-proxy >=  primitive_math.Primitives/gte)
 (variadic-predicate-proxy ==  primitive_math.Primitives/eq)
-(variadic-predicate-proxy not==  primitive_math.Primitives/neq)
+(variadic-predicate-proxy not==  primitive_math.Primitives/neq "A primitive macro complement of `==`")
 
-(defmacro inc [x]
+(defmacro inc
+  "A primitive macro version of `inc`."
+  [x]
   `(Primitives/inc ~x))
 
-(defmacro dec [x]
+(defmacro dec
+  "A primitive macro version of `dec`."
+  [x]
   `(Primitives/dec ~x))
 
-(defmacro rem [n div]
+(defmacro rem
+  "A primitive macro version of `rem`."
+  [n div]
   `(Primitives/rem ~n ~div))
 
-(defmacro zero? [x]
+(defmacro zero?
+  "A primitive macro version of `zero?`."
+  [x]
   `(Primitives/isZero ~x))
 
-(defmacro bool-not [x]
+(defmacro bool-not
+  "A primitive macro version of `not`."
+  [x]
   `(Primitives/not ~x))
 
-(defmacro bit-not [x]
+(defmacro bit-not
+  "A primitive macro version of `bit-not`."
+  [x]
   `(Primitives/bitNot ~x))
 
-(defmacro bit-shift-left [n bits]
+(defmacro bit-shift-left
+  "A primitive macro version of `bit-shift-left`."
+  [n bits]
   `(Primitives/shiftLeft ~n ~bits))
 
-(defmacro bit-shift-right [n bits]
+(defmacro bit-shift-right
+  "A primitive macro version of `bit-shift-right`."
+  [n bits]
   `(Primitives/shiftRight ~n ~bits))
 
-(defmacro bit-unsigned-shift-right [n bits]
+(defmacro bit-unsigned-shift-right
+  "A primitive macro which performs an unsigned right bit-shift."
+  [n bits]
   `(Primitives/unsignedShiftRight ~n ~bits))
 
-(defmacro << [n bits]
+(defmacro <<
+  "An alias for `bit-shift-left`."
+  [n bits]
   `(Primitives/shiftLeft ~n ~bits))
 
-(defmacro >> [n bits]
+(defmacro >>
+  "An alias for `bit-shift-right`."
+  [n bits]
   `(Primitives/shiftRight ~n ~bits))
 
-(defmacro >>> [n bits]
+(defmacro >>>
+  "An alias for `bit-unsigned-shift-right`."
+  [n bits]
   `(Primitives/unsignedShiftRight ~n ~bits))
 
 ;;;
