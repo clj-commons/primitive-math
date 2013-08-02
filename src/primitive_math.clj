@@ -1,8 +1,9 @@
 (ns primitive-math
   (:refer-clojure
-    :exclude [* + - / < > <= >= == rem bit-or bit-and bit-xor bit-not bit-shift-left bit-shift-right byte short int float inc dec zero?])
+    :exclude [* + - / < > <= >= == rem bit-or bit-and bit-xor bit-not bit-shift-left bit-shift-right byte short int float long double inc dec zero?])
   (:import
-    [primitive_math Primitives]))
+    [primitive_math Primitives]
+    [java.nio ByteBuffer]))
 
 ;;;
 
@@ -122,7 +123,7 @@
 ;;;
 
 (def ^:private vars-to-exclude
-  '[* + - / < > <= >= == rem bit-or bit-and bit-xor bit-not bit-shift-left bit-shift-right byte short int float inc dec zero?])
+  '[* + - / < > <= >= == rem bit-or bit-and bit-xor bit-not bit-shift-left bit-shift-right byte short int float long double inc dec zero?])
 
 (defn- using-primitive-operators? []
   (= #'primitive-math/+ (resolve '+)))
@@ -173,23 +174,135 @@
   "Truncates a number to a byte, will not check for overflow."
   {:inline (fn [x] `(primitive_math.Primitives/toByte ~x))}
   ^long [^long x]
-  (long (Primitives/toByte x)))
+  (unchecked-long (Primitives/toByte x)))
 
 (defn short
   "Truncates a number to a short, will not check for overflow."
   {:inline (fn [x] `(primitive_math.Primitives/toShort ~x))}
   ^long [^long x]
-  (long (Primitives/toShort x)))
+  (unchecked-long (Primitives/toShort x)))
 
 (defn int
   "Truncates a number to an int, will not check for overflow."
   {:inline (fn [x] `(primitive_math.Primitives/toInteger ~x))}
   ^long [^long x]
-  (long (Primitives/toInteger x)))
+  (unchecked-long (Primitives/toInteger x)))
 
 (defn float
   "Truncates a number to a float, will not check for overflow."
     {:inline (fn [x] `(primitive_math.Primitives/toFloat ~x))}
   ^double [^double x]
-  (double (Primitives/toFloat x)))
+  (unchecked-double (Primitives/toFloat x)))
 
+(defn long
+  "Converts a number to a long."
+  {:inline (fn [x] `(unchecked-long ~x))}
+  ^long [x]
+  (unchecked-long x))
+
+(defn double
+  "Converts a number to a double."
+  {:inline (fn [x] `(unchecked-double ~x))}
+  ^double [x]
+  (unchecked-double x))
+
+(defn byte->ubyte
+  "Converts a byte to an unsigned byte."
+  {:inline (fn [x] `(->> ~x long (bit-and 0xFF) short))}
+  ^long [^long x]
+  (long (short (bit-and x 0xFF))))
+
+(defn ubyte->byte
+  "Converts an unsigned byte to a byte."
+  {:inline (fn [x] `(byte (long ~x)))}
+  ^long [^long x]
+  (long (byte x)))
+
+(defn short->ushort
+  "Converts a short to an unsigned short."
+  {:inline (fn [x] `(->> ~x long (bit-and 0xFFFF) int))}
+  ^long [^long x]
+  (long (int (bit-and 0xFFFF x))))
+
+(defn ushort->short
+  "Converts an unsigned short to a short."
+  {:inline (fn [x] `(short (long ~x)))}
+  ^long [^long x]
+  (long (short x)))
+
+(defn int->uint
+  "Converts an integer to an unsigned integer."
+  {:inline (fn [x] `(->> ~x long (bit-and 0xFFFFFFFF)))}
+  ^long [^long x]
+  (long (bit-and 0xFFFFFFFF x)))
+
+(defn uint->int
+  "Converts an unsigned integer to an integer."
+  {:inline (fn [x] `(int (long ~x)))}
+  ^long [^long x]
+  (long (int x)))
+
+(defn long->ulong
+  "Converts a long to an unsigned long."
+  [^long x]
+  (BigInteger. 1
+    (-> (ByteBuffer/allocate 8) (.putLong x) .array)))
+
+(defn ^long ulong->long
+  "Converts an unsigned long to a long."
+  ^long [x]
+  (.longValue ^clojure.lang.BigInt (bigint x)))
+
+(defn float->int
+  "Converts a float to an integer."
+  {:inline (fn [x] `(Float/floatToRawIntBits (float ~x)))}
+  ^long [^double x]
+  (long (Float/floatToRawIntBits x)))
+
+(defn int->float
+  "Converts an integer to a float."
+  {:inline (fn [x] `(Float/intBitsToFloat (int ~x)))}
+  ^double [^long x]
+  (double (Float/intBitsToFloat x)))
+
+(defn double->long
+  "Converts a double to a long."
+  {:inline (fn [x] `(Double/doubleToRawLongBits ~x))}
+  ^long [^double x]
+  (long (Double/doubleToRawLongBits x)))
+
+(defn long->double
+  "Converts a long to a double."
+  {:inline (fn [x] `(Double/longBitsToDouble ~x))}
+  ^double [^long x]
+  (double (Double/longBitsToDouble x)))
+
+(defn reverse-short
+  "Inverts the endianness of a short."
+  {:inline (fn [x] `(Primitives/reverseShort ~x))}
+  ^long [^long x]
+  (->> x Primitives/reverseShort long))
+
+(defn reverse-int
+  "Inverts the endianness of an int."
+  {:inline (fn [x] `(Primitives/reverseInteger ~x))}
+  ^long [^long x]
+  (->> x Primitives/reverseInteger long))
+
+(defn reverse-long
+  "Inverts the endianness of a long."
+  {:inline (fn [x] `(Primitives/reverseLong ~x))}
+  ^long [^long x]
+  (Primitives/reverseLong x))
+
+(defn reverse-float
+  "Inverts the endianness of a float."
+  {:inline (fn [x] `(-> ~x float->int reverse-int int->float))}
+  ^double [^double x]
+  (-> x float->int reverse-int int->float))
+
+(defn reverse-double
+  "Inverts the endianness of a double."
+  {:inline (fn [x] `(-> ~x double->long reverse-long long->double))}
+  ^double [^double x]
+  (-> x double->long reverse-long long->double))
