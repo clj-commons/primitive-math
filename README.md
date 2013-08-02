@@ -64,6 +64,19 @@ byte
 short
 int
 float
+long
+double
+byte->ubyte
+ubyte->byte
+short->ushort
+ushort->short
+int->uint
+uint->int
+long->ulong
+ulong->long
+reverse-short
+reverse-int
+reverse-long
 ```
 
 Full documentation can be found [here](http://ideolalia.com/primitive-math/primitive-math.html).
