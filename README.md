@@ -49,6 +49,8 @@ zero?
 >=
 <
 >
+min
+max
 bool-and
 bool-or
 bool-not

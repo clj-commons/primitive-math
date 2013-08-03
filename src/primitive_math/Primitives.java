@@ -205,4 +205,22 @@ public class Primitives {
         return a / b;
     }
 
+    ;;;
+
+    public static long max(long a, long b) {
+        return a < b ? b : a;
+    }
+
+    public static long min(long a, long b) {
+        return a > b ? b : a;
+    }
+
+    public static double max(double a, double b) {
+        return a < b ? b : a;
+    }
+
+    public static double min(double a, double b) {
+        return a > b ? b : a;
+    }
+
 }
