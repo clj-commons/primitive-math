@@ -1,4 +1,4 @@
-(defproject primitive-math "0.1.3-SNAPSHOT"
+(defproject primitive-math "0.1.3"
   :description "predictable, primitive math"
   :license {:name "MIT License"
             :url "http://opensource.org/licenses/MIT"}
@@ -9,7 +9,7 @@
   :plugins [[codox "0.6.4"]]
   :codox {:writer codox-md.writer/write-docs
           :include [primitive-math]}
-  :warn-on-reflection true
+  :global-vars {*warn-on-reflection* true}
   :jvm-opts ^:replace ["-server"]
   :java-source-paths ["src"]
   :javac-options ["-target" "1.5" "-source" "1.5"])
