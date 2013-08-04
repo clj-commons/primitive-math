@@ -29,7 +29,7 @@ In practice, it's usually preferable to import the namespace with a prefix, and 
 ### usage
 
 ```clj
-[primitive-math "0.1.2"]
+[primitive-math "0.1.3"]
 ```
 
 ### an exhaustive list of operators
