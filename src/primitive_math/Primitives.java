@@ -85,6 +85,10 @@ public class Primitives {
         return a >>> n;
     }
 
+    public static int unsignedShiftRight(int a, long n) {
+        return a >>> n;
+    }
+
     ////
 
     public static boolean lt(long a, long b) {
