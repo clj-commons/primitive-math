@@ -9,8 +9,8 @@ primitive-math> (set! *warn-on-reflection* true)
 true
 primitive-math> (+ 3 3)
 6
-primitive-math> (defn adder [x] (+ 1 x)) 
-;; gives a reflection warning 
+primitive-math> (defn adder [x] (+ 1 x))
+;; gives a reflection warning
 primitive-math> (defn adder [^long x] (+ 1 x))
 ;; no reflection warning
 primitive-math> (+ 3.0 3)
@@ -36,7 +36,7 @@ In practice, it's usually preferable to import the namespace with a prefix, and 
 
 ```clj
 +
-- 
+-
 *
 /  ;; aliased as 'div'
 inc
@@ -55,11 +55,13 @@ bool-and
 bool-or
 bool-not
 bool-xor
+true?
+false?
 bit-and
 bit-or
 bit-xor
 bit-not
-bit-shift-left	 ;; aliased as '<<'
+bit-shift-left   ;; aliased as '<<'
 bit-shift-right  ;; aliased as '>>'
 bit-unsigned-shift-right  ;; aliased as '>>>'
 byte

@@ -19,24 +19,32 @@ public class Primitives {
     }
 
     public static short reverseShort(long n) {
-        return (short) (((short) n << 8) 
+        return (short) (((short) n << 8)
                         | ((char) n >>> 8));
     }
 
     public static int reverseInteger(long n) {
         int x = (int) n;
-        return ((x << 24) 
-                | ((x & 0x0000ff00) <<  8) 
-                | ((x & 0x00ff0000) >>> 8) 
+        return ((x << 24)
+                | ((x & 0x0000ff00) <<  8)
+                | ((x & 0x00ff0000) >>> 8)
                 | (x >>> 24));
     }
 
     public static long reverseLong(long n) {
-        return (((long) reverseInteger(n) << 32) 
+        return (((long) reverseInteger(n) << 32)
                 | ((long) reverseInteger((n >>> 32)) & 0xffffffffL));
     }
 
     ////
+
+    public static boolean isTrue(boolean x) {
+        return x == true;
+    }
+
+    public static boolean isFalse(boolean x) {
+        return x == false;
+    }
 
     public static boolean and(boolean a, boolean b) {
         return a && b;

@@ -1,6 +1,6 @@
 (ns primitive-math
   (:refer-clojure
-    :exclude [* + - / < > <= >= == rem bit-or bit-and bit-xor bit-not bit-shift-left bit-shift-right byte short int float long double inc dec zero? min max])
+    :exclude [* + - / < > <= >= == rem bit-or bit-and bit-xor bit-not bit-shift-left bit-shift-right byte short int float long double inc dec zero? min max true? false?])
   (:import
     [primitive_math Primitives]
     [java.nio ByteBuffer]))
@@ -92,6 +92,16 @@
   [x]
   `(Primitives/bitNot ~x))
 
+(defmacro true?
+  "A primitive macro version of `true?`."
+  [x]
+  `(Primitives/isTrue ~x))
+
+(defmacro false?
+  "A primitive macro version of `false?`."
+  [x]
+  `(Primitives/isFalse ~x))
+
 (defmacro bit-shift-left
   "A primitive macro version of `bit-shift-left`."
   [n bits]
@@ -125,7 +135,7 @@
 ;;;
 
 (def ^:private vars-to-exclude
-  '[* + - / < > <= >= == rem bit-or bit-and bit-xor bit-not bit-shift-left bit-shift-right byte short int float long double inc dec zero? min max])
+  '[* + - / < > <= >= == rem bit-or bit-and bit-xor bit-not bit-shift-left bit-shift-right byte short int float long double inc dec zero? true? false? min max])
 
 (defn- using-primitive-operators? []
   (= #'primitive-math/+ (resolve '+)))
@@ -172,7 +182,7 @@
 
 ;;;
 
-(defn byte 
+(defn byte
   "Truncates a number to a byte, will not check for overflow."
   {:inline (fn [x] `(primitive_math.Primitives/toByte ~x))}
   ^long [^long x]
