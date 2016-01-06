@@ -103,11 +103,19 @@ public class Primitives {
         return a < b;
     }
 
+    public static boolean lt(float a, float b) {
+        return a < b;
+    }
+
     public static boolean lt(double a, double b) {
         return a < b;
     }
 
     public static boolean lte(double a, double b) {
+        return a <= b;
+    }
+
+    public static boolean lte(float a, float b) {
         return a <= b;
     }
 
@@ -119,11 +127,19 @@ public class Primitives {
         return a > b;
     }
 
+    public static boolean gt(float a, float b) {
+        return a > b;
+    }
+
     public static boolean gt(double a, double b) {
         return a > b;
     }
 
     public static boolean gte(long a, long b) {
+        return a >= b;
+    }
+
+    public static boolean gte(float a, float b) {
         return a >= b;
     }
 
@@ -135,11 +151,19 @@ public class Primitives {
         return a == b;
     }
 
+    public static boolean eq(float a, float b) {
+        return a == b;
+    }
+
     public static boolean eq(double a, double b) {
         return a == b;
     }
 
     public static boolean neq(long a, long b) {
+        return a != b;
+    }
+
+    public static boolean neq(float a, float b) {
         return a != b;
     }
 
@@ -157,12 +181,20 @@ public class Primitives {
         return n + 1;
     }
 
+    public static float inc(float n) {
+        return n + 1.0f;
+    }
+
     public static double inc(double n) {
         return n + 1.0;
     }
 
     public static long dec(long n) {
         return n - 1;
+    }
+
+    public static float dec(float n) {
+        return n - 1.0f;
     }
 
     public static double dec(double n) {
@@ -173,11 +205,19 @@ public class Primitives {
         return n == 0;
     }
 
+    public static boolean isZero(float n) {
+        return n == 0.0f;
+    }
+
     public static boolean isZero(double n) {
         return n == 0.0;
     }
 
     public static long add(long a, long b) {
+        return a + b;
+    }
+
+    public static float add(float a, float b) {
         return a + b;
     }
 
@@ -189,11 +229,19 @@ public class Primitives {
         return a - b;
     }
 
+    public static float subtract(float a, float b) {
+        return a - b;
+    }
+
     public static double subtract(double a, double b) {
         return a - b;
     }
 
     public static long negate(long n) {
+        return -n;
+    }
+
+    public static float negate(float n) {
         return -n;
     }
 
@@ -205,11 +253,19 @@ public class Primitives {
         return a * b;
     }
 
+    public static float multiply(float a, float b) {
+        return a * b;
+    }
+
     public static double multiply(double a, double b) {
         return a * b;
     }
 
     public static long divide(long a, long b) {
+        return a / b;
+    }
+
+    public static float divide(float a, float b) {
         return a / b;
     }
 
@@ -224,6 +280,14 @@ public class Primitives {
     }
 
     public static long min(long a, long b) {
+        return a > b ? b : a;
+    }
+
+    public static float max(float a, float b) {
+        return a < b ? b : a;
+    }
+
+    public static float min(float a, float b) {
         return a > b ? b : a;
     }
 
