@@ -4,6 +4,8 @@
   (:require
     [primitive-math :as p]))
 
+(set! *warn-on-reflection* true)
+
 (def primitive-ops
   {:long    `[p/long->ulong     p/ulong->long    p/reverse-long]
    :int     `[p/int->uint       p/uint->int      p/reverse-int]
@@ -61,9 +63,7 @@
           (+ 1 2.0))))
     (finally
       (p/unuse-primitive-operators)))
-  
+
   (eval-assertions
     `((== 6 (+ 1 2 3) (+ 3 3))
       (== 3.0 (+ 1 2.0)))))
-
-
