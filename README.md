@@ -29,7 +29,7 @@ In practice, it's usually preferable to import the namespace with a prefix, and 
 ### usage
 
 ```clj
-[primitive-math "0.1.3"]
+[primitive-math "0.1.5"]
 ```
 
 ### an exhaustive list of operators
@@ -87,6 +87,6 @@ Full documentation can be found [here](http://ideolalia.com/primitive-math/primi
 
 ### license
 
-Copyright © 2013 Zachary Tellman
+Copyright © 2016 Zachary Tellman
 
 Distributed under the [MIT License](http://opensource.org/licenses/MIT).
