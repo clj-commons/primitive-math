@@ -67,3 +67,11 @@
   (eval-assertions
     `((== 6 (+ 1 2 3) (+ 3 3))
       (== 3.0 (+ 1 2.0)))))
+
+(deftest test-bit-shifting
+  (p/use-primitive-operators)
+  (try
+    (is (== 2r100 (p/<< 2r1 2) (p/>> 2r10000 2) (p/>>> 2r10000 2) (bit-shift-left 2r1 2) (bit-shift-right 2r10000 2) (unsigned-bit-shift-right 2r10000 2) (p/bit-unsigned-shift-right 2r10000 2)))
+
+    (finally
+      (p/unuse-primitive-operators))))

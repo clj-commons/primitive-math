@@ -1,6 +1,6 @@
 (ns primitive-math
   (:refer-clojure
-    :exclude [* + - / < > <= >= == rem bit-or bit-and bit-xor bit-not bit-shift-left bit-shift-right byte short int float long double inc dec zero? min max true? false?])
+   :exclude [* + - / < > <= >= == rem bit-or bit-and bit-xor bit-not bit-shift-left bit-shift-right unsigned-bit-shift-right byte short int float long double inc dec zero? min max true? false?])
   (:import
     [primitive_math Primitives]
     [java.nio ByteBuffer]))
@@ -112,7 +112,12 @@
   [n bits]
   `(Primitives/shiftRight ~n ~bits))
 
-(defmacro bit-unsigned-shift-right
+(defmacro unsigned-bit-shift-right
+  "A primitive macro which performs an unsigned right bit-shift."
+  [n bits]
+  `(Primitives/unsignedShiftRight ~n ~bits))
+
+(defmacro ^:deprecated bit-unsigned-shift-right
   "A primitive macro which performs an unsigned right bit-shift."
   [n bits]
   `(Primitives/unsignedShiftRight ~n ~bits))
@@ -128,14 +133,14 @@
   `(Primitives/shiftRight ~n ~bits))
 
 (defmacro >>>
-  "An alias for `bit-unsigned-shift-right`."
+  "An alias for `unsigned-bit-shift-right`."
   [n bits]
   `(Primitives/unsignedShiftRight ~n ~bits))
 
 ;;;
 
 (def ^:private vars-to-exclude
-  '[* + - / < > <= >= == rem bit-or bit-and bit-xor bit-not bit-shift-left bit-shift-right byte short int float long double inc dec zero? true? false? min max])
+  '[* + - / < > <= >= == rem bit-or bit-and bit-xor bit-not bit-shift-left bit-shift-right unsigned-bit-shift-right byte short int float long double inc dec zero? true? false? min max])
 
 (defn- using-primitive-operators? []
   (= #'primitive-math/+ (resolve '+)))
