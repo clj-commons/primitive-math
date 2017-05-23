@@ -30,6 +30,7 @@ In practice, it's usually preferable to import the namespace with a prefix, and 
 
 ```clj
 [primitive-math "0.1.6"]
+=======
 ```
 
 ### an exhaustive list of operators
@@ -63,7 +64,7 @@ bit-xor
 bit-not
 bit-shift-left   ;; aliased as '<<'
 bit-shift-right  ;; aliased as '>>'
-bit-unsigned-shift-right  ;; aliased as '>>>'
+unsigned-bit-shift-right  ;; aliased as '>>>'
 byte
 short
 int
@@ -87,6 +88,6 @@ Full documentation can be found [here](http://ideolalia.com/primitive-math/primi
 
 ### license
 
-Copyright © 2013 Zachary Tellman
+Copyright © 2016 Zachary Tellman
 
 Distributed under the [MIT License](http://opensource.org/licenses/MIT).
