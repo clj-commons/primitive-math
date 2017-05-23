@@ -1,6 +1,6 @@
 (ns primitive-math
   (:refer-clojure
-    :exclude [* + - / < > <= >= == rem bit-or bit-and bit-xor bit-not bit-shift-left bit-shift-right byte short int float long double inc dec zero? min max true? false?])
+    :exclude [* + - / < > <= >= == rem bit-or bit-and bit-xor bit-not bit-shift-left bit-shift-right unsigned-bit-shift-right byte short int float long double inc dec zero? min max true? false?])
   (:import
     [primitive_math Primitives]
     [java.nio ByteBuffer]))
@@ -112,7 +112,13 @@
   [n bits]
   `(Primitives/shiftRight ~n ~bits))
 
-(defmacro bit-unsigned-shift-right
+;; this was the original name, which doesn't match the Clojure name and is kept
+;; around for legacy purposes
+(defmacro ^:no-doc bit-unsigned-shift-right
+  [n bits]
+  `(Primitives/unsignedShiftRight ~n ~bits))
+
+(defmacro unsigned-bit-shift-right
   "A primitive macro which performs an unsigned right bit-shift."
   [n bits]
   `(Primitives/unsignedShiftRight ~n ~bits))

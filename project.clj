@@ -1,4 +1,4 @@
-(defproject primitive-math "0.1.5"
+(defproject primitive-math "0.1.6"
   :description "predictable, primitive math"
   :license {:name "MIT License"
             :url "http://opensource.org/licenses/MIT"}

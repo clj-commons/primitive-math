@@ -13,3 +13,4 @@ push
 .lein-failures
 .lein-plugins
 .lein-repl-history
+.nrepl*
