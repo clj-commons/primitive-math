@@ -1,3 +1,7 @@
+[![Clojars Project](https://img.shields.io/clojars/v/org.clj-commons/primitive-math.svg)](https://clojars.org/org.clj-commons/primitive-math)
+[![cljdoc badge](https://cljdoc.org/badge/org.clj-commons/primitive-math)](https://cljdoc.org/d/org.clj-commons/primitive-math)
+[![CircleCI](https://circleci.com/gh/clj-commons/primitive-math.svg?style=svg)](https://circleci.com/gh/clj-commons/primitive-math)
+
 Clojure's numeric tower is useful, but it can put a lot of steps between you and simple arithmetic.  Unfortunately, while Clojure will warn you when reflection is required to invoke a function, it will **not** warn you when reflection is required to perform math.  The only reliable way to discover whether you're calling `clojure.lang.Number.add(Object, Object)` or `clojure.lang.Number.add(long, long)` is to use a profiler or decompiler.
 
 Or you can just bypass Clojure's math operators altogether.
