@@ -9,7 +9,6 @@
                                     :username :env/clojars_username
                                     :password :env/clojars_password
                                     :sign-releases true}]]
-
   :profiles {:dev {:dependencies [[criterium "0.4.6"]
                                   [org.clojure/clojure "1.10.0"]]}}
   :global-vars {*warn-on-reflection* true}
