@@ -9,13 +9,8 @@
                                     :username :env/clojars_username
                                     :password :env/clojars_password
                                     :sign-releases true}]]
-
-  :profiles {:dev {:dependencies [[criterium "0.4.1"]
-                                  [org.clojure/clojure "1.8.0"]
-                                  [codox-md "0.2.0" :exclusions [org.clojure/clojure]]]}}
-  :plugins [[codox "0.6.4"]]
-  :codox {:writer codox-md.writer/write-docs
-          :include [primitive-math]}
+  :profiles {:dev {:dependencies [[criterium "0.4.6"]
+                                  [org.clojure/clojure "1.10.0"]]}}
   :global-vars {*warn-on-reflection* true}
   :jvm-opts ^:replace ["-server"]
   :java-source-paths ["src"]
