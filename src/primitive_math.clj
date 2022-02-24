@@ -264,7 +264,7 @@
   "Converts a long to an unsigned long."
   [^long x]
   (BigInteger. 1
-    (-> (ByteBuffer/allocate 8) (.putLong x) .array)))
+    ^bytes (-> (ByteBuffer/allocate 8) (.putLong x) .array)))
 
 (defn ^long ulong->long
   "Converts an unsigned long to a long."
