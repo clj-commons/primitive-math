@@ -33,8 +33,7 @@ In practice, it's usually preferable to import the namespace with a prefix, and 
 ### usage
 
 ```clojure
-[primitive-math "0.1.7"]
-=======
+[clj-commons/primitive-math "1.0.0-rc1"]
 ```
 
 ### an exhaustive list of operators
