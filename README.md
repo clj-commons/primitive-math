@@ -8,7 +8,7 @@ Or you can just bypass Clojure's math operators altogether.
 
 In the `primitive-math` namespace, there are equivalents for every arithmetic operator and comparator that will give a reflection warning if it cannot compile down to a simple, predictable, unboxed mathematical operation.
 
-```clj
+```clojure
 primitive-math> (set! *warn-on-reflection* true)
 true
 primitive-math> (+ 3 3)
@@ -23,7 +23,7 @@ primitive-math> (+ 3.0 3)
 
 To support operations on both `long` and `double` types without any reflection, these operators are defined as macros.  This means they cannot be used as higher-order functions:
 
-```clj
+```clojure
 primitive-math> (apply + [1 2 3])
 ;; throws a 'cannot take value of macro' exception
 ```
@@ -32,14 +32,14 @@ In practice, it's usually preferable to import the namespace with a prefix, and 
 
 ### usage
 
-```clj
+```clojure
 [primitive-math "0.1.7"]
 =======
 ```
 
 ### an exhaustive list of operators
 
-```clj
+```clojure
 +
 -
 *
