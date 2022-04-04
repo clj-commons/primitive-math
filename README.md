@@ -33,7 +33,7 @@ In practice, it's usually preferable to import the namespace with a prefix, and 
 ### usage
 
 ```clj
-[primitive-math "0.1.6"]
+[primitive-math "0.1.7"]
 =======
 ```
 
