@@ -1,5 +1,5 @@
 (defproject org.clj-commons/primitive-math
-    (or (System/getenv "PROJECT_VERSION") "1.0.0-rc1")
+    (or (System/getenv "PROJECT_VERSION") "1.0.0")
   :description "Predictable, primitive math"
   :url "https://github.com/clj-commons/primitive-math"
   :license {:name "MIT License"
