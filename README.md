@@ -97,7 +97,7 @@ reverse-int
 reverse-long
 ```
 
-Full documentation can be found at [cljdoc](https://cljdoc.org/badge/org.clj-commons/primitive-math).
+Full documentation can be found at [cljdoc](https://cljdoc.org/d/org.clj-commons/primitive-math).
 
 ### License
 
