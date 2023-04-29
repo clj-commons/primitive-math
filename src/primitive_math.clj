@@ -1,6 +1,7 @@
 (ns primitive-math
-  {:deprecated "1.0.0"}
-  ; "Use clj-commons.primitive-math instead."
+  {:deprecated "1.0.0"
+   :superseded-by "clj-commons.primitive-math"} 
+  "Use clj-commons.primitive-math instead."
   (:refer-clojure
     :exclude [* + - / < > <= >= == rem bit-or bit-and bit-xor bit-not bit-shift-left bit-shift-right unsigned-bit-shift-right byte short int float long double inc dec zero? min max true? false?])
   (:import
