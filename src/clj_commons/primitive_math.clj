@@ -17,6 +17,7 @@
      (let [x-sym (gensym "x")]
        `(defmacro ~name
           ~doc
+          {:arglists '([~'x] [~'x ~'y] [~'x ~'y & ~'rest])}
           ([~x-sym]
              ~((eval single-arg-form) x-sym))
           ([x# y#]
@@ -34,6 +35,7 @@
      (let [x-sym (gensym "x")]
        `(defmacro ~name
           ~doc
+          {:arglists '([~'x] [~'x ~'y] [~'x ~'y & ~'rest])}
           ([~x-sym]
              ~((eval single-arg-form) x-sym))
           ([x# y#]
