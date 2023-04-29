@@ -268,7 +268,7 @@
   (BigInteger. 1
     (-> (ByteBuffer/allocate 8) (.putLong x) .array)))
 
-(defn ^long ulong->long
+(defn ulong->long
   "Converts an unsigned long to a long."
   ^long [x]
   (.longValue ^clojure.lang.BigInt (bigint x)))
