@@ -1,0 +1,13 @@
+== Changes
+
+=== Unreleased
+
+- Deprecate single-segment namespace
+- Add primitive `rem` versions for float and double
+
+Contributions by Daniel Compton and Matthew Davidson
+
+=== 0.1.0 - 1.0.0
+
+Contributions by Zach Tellman, Matthew Davidson, Erik Assum,
+Michael du Breuil, and skynet.
