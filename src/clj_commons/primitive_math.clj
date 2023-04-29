@@ -5,7 +5,11 @@
     (clj_commons.primitive_math Primitives)
     (java.nio ByteBuffer)))
 
-;;;
+;; Declare the variadic-* macro operators for linters
+(declare ^:macro + ^:macro - ^:macro * ^:macro / ^:macro div ^:macro bit-and
+         ^:macro bit-or ^:macro bit-xor ^:macro bool-and ^:macro bool-or
+         ^:macro bool-xor ^:macro min ^:macro max ^:macro > ^:macro <
+         ^:macro <= ^:macro >= ^:macro == ^:macro not==)
 
 (defmacro ^:private variadic-proxy
   "Creates left-associative variadic forms for any operator."
