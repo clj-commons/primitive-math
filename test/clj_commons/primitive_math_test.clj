@@ -59,6 +59,10 @@
 
         (== (float 6.0) (+ (float 1.0) (float 2.0) (float 3.0)) (+ (float 3.0) (float 3.0)))
 
+        (== 1 (rem 10 9))
+        (== (float 0.5) (rem (float 6.5) (float 1.5)))
+        (== 0.5 (rem 6.5 1.5))
+
         (thrown? IllegalArgumentException
           (+ 1 2.0))))
     (finally
