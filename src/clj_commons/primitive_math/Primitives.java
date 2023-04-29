@@ -177,6 +177,10 @@ public class Primitives {
         return n % div;
     }
 
+    public static float rem(float n, float div) { return n % div; }
+
+    public static double rem(double n, double div) { return n % div; }
+
     public static long inc(long n) {
         return n + 1;
     }
