@@ -5,7 +5,11 @@
     (clj_commons.primitive_math Primitives)
     (java.nio ByteBuffer)))
 
-;;;
+;; Declare the variadic-* macro operators for linters
+(declare ^:macro + ^:macro - ^:macro * ^:macro / ^:macro div ^:macro bit-and
+         ^:macro bit-or ^:macro bit-xor ^:macro bool-and ^:macro bool-or
+         ^:macro bool-xor ^:macro min ^:macro max ^:macro > ^:macro <
+         ^:macro <= ^:macro >= ^:macro == ^:macro not==)
 
 (defmacro ^:private variadic-proxy
   "Creates left-associative variadic forms for any operator."
@@ -17,6 +21,7 @@
      (let [x-sym (gensym "x")]
        `(defmacro ~name
           ~doc
+          {:arglists '([~'x] [~'x ~'y] [~'x ~'y & ~'rest])}
           ([~x-sym]
              ~((eval single-arg-form) x-sym))
           ([x# y#]
@@ -34,6 +39,7 @@
      (let [x-sym (gensym "x")]
        `(defmacro ~name
           ~doc
+          {:arglists '([~'x] [~'x ~'y] [~'x ~'y & ~'rest])}
           ([~x-sym]
              ~((eval single-arg-form) x-sym))
           ([x# y#]
@@ -266,7 +272,7 @@
   (BigInteger. 1
     (-> (ByteBuffer/allocate 8) (.putLong x) .array)))
 
-(defn ^long ulong->long
+(defn ulong->long
   "Converts an unsigned long to a long."
   ^long [x]
   (.longValue ^clojure.lang.BigInt (bigint x)))
