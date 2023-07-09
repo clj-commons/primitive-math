@@ -40,10 +40,10 @@ Pre-1.0.0 versions of primitive-math used a single-segment namespace. This cause
 
 ```clojure
 ;;; Lein
-[org.clj-commons/primitive-math "1.0.1-rc1"]
+[org.clj-commons/primitive-math "1.0.1"]
 
 ;;; deps.edn
-org.clj-commons/primitive-math {:mvn/version "1.0.1-rc1"}
+org.clj-commons/primitive-math {:mvn/version "1.0.1"}
 ```
 
 ### An exhaustive list of operators

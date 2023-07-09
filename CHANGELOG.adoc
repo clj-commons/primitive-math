@@ -1,6 +1,6 @@
 == Changes
 
-=== 1.0.1-rc1
+=== 1.0.1
 
 - Update arglists for docs
 - Add declarations to better support linters
