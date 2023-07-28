@@ -14,3 +14,6 @@ push
 .lein-plugins
 .lein-repl-history
 .nrepl*
+.clj-kondo/.cache
+.lsp/.cache
+.portal/vs-code.edn
